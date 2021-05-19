@@ -12,7 +12,10 @@ class VariableTest < Minitest::Test
   end
 
   def test_variable_render_calls_to_liquid
-    assert_template_result('foobar', '{{ foo }}', 'foo' => ThingWithToLiquid.new)
+    assert_template_result('1', '{{ foo }}', 'foo' => IntegerDrop.new('1'))
+    assert_template_result('2', '{{ list[foo] }}', {'foo' => IntegerDrop.new('1'), 'list' => [1, 2, 3]})
+    assert_template_result('one', '{{ list[foo] }}', {'foo' => IntegerDrop.new('1'), 'list' => { 1 => 'one'}})
+    assert_template_result('one', '{% if foo == 1 %}one{% endif %}', 'foo' => IntegerDrop.new('1'))
   end
 
   def test_simple_with_whitespaces
@@ -102,6 +105,10 @@ class VariableTest < Minitest::Test
   end
 
   def test_dynamic_find_var
+    assert_template_result('bar', '{{ [key] }}', 'key' => 'foo', 'foo' => 'bar')
+  end
+
+  def test_raw_value_variable
     assert_template_result('bar', '{{ [key] }}', 'key' => 'foo', 'foo' => 'bar')
   end
 end

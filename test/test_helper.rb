@@ -119,6 +119,20 @@ class ThingWithToLiquid
   end
 end
 
+class IntegerDrop < Liquid::Drop
+  def initialize value
+    @value = value
+  end
+
+  def to_s
+    @value.to_s
+  end
+
+  def to_raw_value
+    @value.to_i
+  end
+end
+
 class ErrorDrop < Liquid::Drop
   def standard_error
     raise Liquid::StandardError, 'standard error'
