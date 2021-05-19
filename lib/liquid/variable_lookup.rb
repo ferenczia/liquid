@@ -70,7 +70,7 @@ module Liquid
 
       # check if the object has a raw value presentation
       # a drop can be presented as an integer or a boolean
-      return object.to_raw_value if object.respond_to?(:to_raw_value)
+      return object.to_liquid_value if object.respond_to?(:to_liquid_value)
 
       object
     end

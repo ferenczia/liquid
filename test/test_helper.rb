@@ -128,7 +128,7 @@ class IntegerDrop < Liquid::Drop
     @value.to_s
   end
 
-  def to_raw_value
+  def to_liquid_value
     @value.to_i
   end
 end
@@ -138,7 +138,7 @@ class BooleanDrop < Liquid::Drop
     @value = value
   end
 
-  def to_raw_value
+  def to_liquid_value
     @value
   end
 end

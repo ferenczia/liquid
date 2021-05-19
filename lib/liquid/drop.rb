@@ -52,7 +52,7 @@ module Liquid
       self
     end
 
-    def to_raw_value
+    def to_liquid_value
       self
     end
 
@@ -76,7 +76,7 @@ module Liquid
           blacklist -= [:sort, :count, :first, :min, :max]
         end
 
-        whitelist = [:to_liquid, :to_raw_value] + (public_instance_methods - blacklist)
+        whitelist = [:to_liquid, :to_liquid_value] + (public_instance_methods - blacklist)
         Set.new(whitelist.map(&:to_s))
       end
     end
