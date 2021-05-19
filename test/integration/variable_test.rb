@@ -13,8 +13,8 @@ class VariableTest < Minitest::Test
 
   def test_variable_render_calls_to_liquid
     assert_template_result('1', '{{ foo }}', 'foo' => IntegerDrop.new('1'))
-    assert_template_result('2', '{{ list[foo] }}', {'foo' => IntegerDrop.new('1'), 'list' => [1, 2, 3]})
-    assert_template_result('one', '{{ list[foo] }}', {'foo' => IntegerDrop.new('1'), 'list' => { 1 => 'one'}})
+    assert_template_result('2', '{{ list[foo] }}', 'foo' => IntegerDrop.new('1'), 'list' => [1, 2, 3])
+    assert_template_result('one', '{{ list[foo] }}', 'foo' => IntegerDrop.new('1'), 'list' => { 1 => 'one' })
     assert_template_result('one', '{% if foo == 1 %}one{% endif %}', 'foo' => IntegerDrop.new('1'))
 
     assert_template_result('true', '{{ foo }}', 'foo' => BooleanDrop.new(true))

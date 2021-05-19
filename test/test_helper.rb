@@ -120,7 +120,7 @@ class ThingWithToLiquid
 end
 
 class IntegerDrop < Liquid::Drop
-  def initialize value
+  def initialize(value)
     @value = value
   end
 
@@ -134,7 +134,7 @@ class IntegerDrop < Liquid::Drop
 end
 
 class BooleanDrop < Liquid::Drop
-  def initialize value
+  def initialize(value)
     @value = value
   end
 
