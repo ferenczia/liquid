@@ -133,6 +133,16 @@ class IntegerDrop < Liquid::Drop
   end
 end
 
+class BooleanDrop < Liquid::Drop
+  def initialize value
+    @value = value
+  end
+
+  def to_raw_value
+    @value
+  end
+end
+
 class ErrorDrop < Liquid::Drop
   def standard_error
     raise Liquid::StandardError, 'standard error'
