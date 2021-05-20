@@ -20,6 +20,7 @@ class VariableTest < Minitest::Test
     assert_template_result('2', '{{ list[foo] }}', 'foo' => IntegerDrop.new('1'), 'list' => [1, 2, 3])
     assert_template_result('one', '{{ list[foo] }}', 'foo' => IntegerDrop.new('1'), 'list' => { 1 => 'one' })
     assert_template_result('Yay', '{{ foo }}', 'foo' => BooleanDrop.new(true))
+    assert_template_result('YAY', '{{ foo | upcase }}', 'foo' => BooleanDrop.new(true))
   end
 
   def test_if_tag_calls_to_liquid_value
