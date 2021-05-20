@@ -121,10 +121,11 @@ end
 
 class IntegerDrop < Liquid::Drop
   def initialize(value)
+    super()
     @value = value.to_i
   end
 
-  def == other
+  def ==(other)
     @value == other
   end
 
@@ -139,10 +140,11 @@ end
 
 class BooleanDrop < Liquid::Drop
   def initialize(value)
+    super()
     @value = value
   end
 
-  def == other
+  def ==(other)
     @value == other
   end
 
