@@ -50,12 +50,12 @@ module Liquid
 
     def render_to_output_buffer(context, output)
       @blocks.each do |block|
-        object = block.evaluate(context)
+        result = block.evaluate(context)
         # if a Liquid::Drop has been given, check its to_liquid_value
         # The drop could be a BooleanDrop, and we need to evaluate its actual value
-        object = object.to_liquid_value if object.is_a?(Liquid::Drop)
+        result = result.to_liquid_value if result.is_a?(Liquid::Drop)
 
-        if object
+        if result
           return block.attachment.render_to_output_buffer(context, output)
         end
       end

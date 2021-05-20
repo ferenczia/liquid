@@ -52,7 +52,15 @@ module Liquid
       @blocks.each do |block|
         if block.else?
           block.attachment.render_to_output_buffer(context, output) if execute_else_block
-        elsif block.evaluate(context)
+          next
+        end
+
+        result = block.evaluate(context)
+        # if a Liquid::Drop has been given, check its to_liquid_value
+        # The drop could be a BooleanDrop, and we need to evaluate its actual value
+        result = result.to_liquid_value if result.is_a?(Liquid::Drop)
+
+        if result
           execute_else_block = false
           block.attachment.render_to_output_buffer(context, output)
         end
