@@ -121,7 +121,11 @@ end
 
 class IntegerDrop < Liquid::Drop
   def initialize(value)
-    @value = value
+    @value = value.to_i
+  end
+
+  def == other
+    @value == other
   end
 
   def to_s
@@ -129,7 +133,7 @@ class IntegerDrop < Liquid::Drop
   end
 
   def to_liquid_value
-    @value.to_i
+    @value
   end
 end
 
@@ -138,8 +142,16 @@ class BooleanDrop < Liquid::Drop
     @value = value
   end
 
+  def == other
+    @value == other
+  end
+
   def to_liquid_value
     @value
+  end
+
+  def to_s
+    @value ? "Yay" : "Nay"
   end
 end
 

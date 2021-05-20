@@ -40,6 +40,10 @@ module Liquid
       @lookups.each_index do |i|
         key = context.evaluate(@lookups[i])
 
+        # check if the object has a raw value presentation
+        # a drop can be presented as an integer or a boolean
+        key = key.to_liquid_value if key.is_a?(Liquid::Drop)
+
         # If object is a hash- or array-like object we look for the
         # presence of the key and if its available we return it
         if object.respond_to?(:[]) &&
@@ -67,10 +71,6 @@ module Liquid
         # If we are dealing with a drop here we have to
         object.context = context if object.respond_to?(:context=)
       end
-
-      # check if the object has a raw value presentation
-      # a drop can be presented as an integer or a boolean
-      return object.to_liquid_value if object.respond_to?(:to_liquid_value)
 
       object
     end
